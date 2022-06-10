@@ -32,12 +32,12 @@ def get_user_inputs(mode, last_number = None):
        2. starting from the begining
     """
     if not mode:
-        first_number = int(input("What's the first number? "))
+        first_number = float(input("What's the first number? "))
         print(operators)
     else:
         first_number = last_number
     operator = input('Pick an operation: ')
-    second_number = int(input("What's the next number? "))
+    second_number = float(input("What's the next number? "))
     result = calc_result(first_number,operator,second_number)
     print(f"{first_number} {operator} {second_number} = {result}")
     return result
