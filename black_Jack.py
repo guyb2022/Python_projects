@@ -78,6 +78,7 @@ def play_diller_hand(diller_hand, player_result):
     return diller_result
 
 def print_status(player_hand, player_result, diller_hand, diller_result):
+    """Print current status"""
     print(f'Your hand: {player_hand} - Current score: {player_result}')
     print(f'Diller hand: {diller_hand} - Current score: {diller_result}')
     
