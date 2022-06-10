@@ -1,22 +1,30 @@
 from art import logo,operators
 print(logo)
 
-def print_result(first_number,operator,second_number):
-    """Print the operation results of two numbers"""
-    if operator == '+':
-        return(first_number + second_number)
-    elif operator == '-':
-        return(first_number - second_number)
-    elif operator == '*':
-        return(first_number * second_number)
-    elif operator == '/':
-        if second_number != 0:
-            return(first_number / second_number)
-        else:
-            print('Cannot divide by zero!!!')
-    else:
-        print("Not known operator!!!")
+def add(num1,num2):
+    return num1 + num2
 
+def sub(num1,num2):
+    return num1 - num2
+
+def mul(num1,num2):
+    return num1 * num2
+
+def div(num1,num2):
+    return num1 / num2
+
+operator_sign = {
+    '+' : add,
+    '-' : sub,
+    '*' : mul,
+    '/' : div,
+}
+
+def calc_result(first_number,operator,second_number):
+    """Print the operation results of two numbers"""
+    calculation_function = operator_sign[operator]
+    return calculation_function(first_number, second_number)
+    
 def get_user_inputs(mode, last_number = None):
     """Get the inputs from the user
        Need to seperate between two options:
@@ -30,7 +38,7 @@ def get_user_inputs(mode, last_number = None):
         first_number = last_number
     operator = input('Pick an operation: ')
     second_number = int(input("What's the next number? "))
-    result = print_result(first_number,operator,second_number)
+    result = calc_result(first_number,operator,second_number)
     print(f"{first_number} {operator} {second_number} = {result}")
     return result
     
