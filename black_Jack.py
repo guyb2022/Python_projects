@@ -1,9 +1,8 @@
-from black_jack_logo import logo
+from art import logo
 import random
+from replit import clear
 
 print(logo)
-
-cards_pack = [11,10,10,10,10,9,8,7,6,5,4,3,2]
 
 def check_sum(hand):
     """Inner check for each cycle of checks"""
@@ -34,6 +33,7 @@ def check_total_sum(hand):
         
 def take_card():
     """Return a new card randomly"""
+    cards_pack = [11,10,10,10,10,9,8,7,6,5,4,3,2]
     return random.choice(cards_pack)
 
 def init_players_hands(player1,player2):
@@ -90,41 +90,32 @@ def play_game():
     player_hand = []
     diller_hand = []
     player_hand, diller_hand = init_players_hands(player_hand, diller_hand)
-    
-    if input("Do you want to play a game? 'Y' or 'N': ").lower() == 'y':
-        continue_game = True
+    player_result = check_total_sum(player_hand)
+    diller_result = check_total_sum(diller_hand)
+    print_status(player_hand, player_result, diller_hand, diller_result)
+    player_result = play_player_hand(player_hand,player_result)
+
+    if player_result == 21:
+        print("You Win!!!")
+        return
+    if player_result > 21:
+        return
     else:
-        continue_game = False
-
-    while continue_game:
-
-        player_result = check_total_sum(player_hand)
-        diller_result = check_total_sum(diller_hand)
+        diller_result = play_diller_hand(diller_hand,player_result)
         print_status(player_hand, player_result, diller_hand, diller_result)
-        player_result = play_player_hand(player_hand,player_result)
-
-        if player_result == 21:
-            print("You Win!!!")
-            continue_game = False
-        elif player_result > 21:
-            continue_game = False
-        else:
-            diller_result = play_diller_hand(diller_hand,player_result)
-            print_status(player_hand, player_result, diller_hand, diller_result)
             
-            if diller_result > 21:
-                continue_game = False
-                print('You Win!!!')
-            elif diller_result > player_result:
-                print('You Lost!!!')
-                continue_game = False
-            elif diller_result < player_result:
-                print('You Win!!!')
-                continue_game = False
-            elif diller_result == player_result:
-                print("It's a draw!!!")
-                continue_game = False
+        if diller_result > 21:
+            print('You Win!!!')
+        elif diller_result > player_result:
+            print('You Lost!!!')
+        elif diller_result < player_result:
+            print('You Win!!!')
+        elif diller_result == player_result:
+            print("It's a draw!!!")
         
 if __name__ == "__main__":
-    play_game()
-    
+    while input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == "y":
+        clear()
+        play_game()
+    print('Game Over!!')
+        
