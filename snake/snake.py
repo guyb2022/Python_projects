@@ -7,7 +7,7 @@ LEFT = 180
 RIGHT = 0
 
 
-class Snake():
+class Snake(Turtle):
     """Class to handle the snake"""
     def __init__(self):
         self.segments = []
@@ -20,7 +20,7 @@ class Snake():
             self.add_segment(position)
 
     def add_segment(self, position):
-        """Adding onr new segment to the snake body"""
+        """Adding on new segment to the snake body"""
         tim = Turtle('square')
         tim.color('white')
         tim.penup()
