@@ -12,7 +12,6 @@ class Paddle(Turtle):
         self.score = 0
         self.position = position
         self.create_body()
-        self.body = None
 
     def create_body(self):
         """Creation the player pedal, initialize with 4 blocks"""
