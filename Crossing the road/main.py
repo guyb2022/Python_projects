@@ -1,6 +1,6 @@
 from turtle import Screen, Turtle
 from passenger import Passenger
-from car import Car
+from car_pool import CarPool
 from scoreboard import ScoreBoard
 import time
 import random
@@ -17,10 +17,8 @@ screen.title("The turtle Road Game")
 screen.tracer(0)
 # Create passenger object
 passenger = Passenger()
-# create the car and car list to hold all car objects
-cars = []
-car = Car()
-cars.append(car)
+# create the car objects
+carpool = CarPool()
 # create the scoreboard
 scoreboard = ScoreBoard()
 
@@ -47,10 +45,10 @@ while game_on:
     """Main game loop, handle the passenger/cars/scoreBoard"""
     screen.update()
     time.sleep(time_sleep)
-    car.cars_move(cars)
-    print(passenger.lives_left)
+    carpool.cars_move()
+
     # Detect collision with cars
-    for car in cars:
+    for car in carpool.cars_list:
         if passenger.distance(car) < 20:
             time_sleep = 1
             scoreboard.level = 1
@@ -76,7 +74,7 @@ while game_on:
         game_on = False
 
     # If last level was achieved
-    if scoreboard.level > 2:
+    if scoreboard.level > 10:
         scoreboard.goto(0, 0)
         scoreboard.write('WELL DONE\n YOU WON!!!', align='center', font=FONT)
         time.sleep(3)
@@ -85,11 +83,10 @@ while game_on:
 
     # create the care randomly
     if random.randint(0, 100) > 50:
-        car = Car()
-        cars.append(car)
+        carpool.create_car()
 
     # delete the car after reaching the left side
-    for car in cars:
+    for car in carpool.cars_list:
         if car.xcor() < -390:
             del car
 
@@ -98,8 +95,6 @@ while game_on:
         scoreboard.level += 1
         scoreboard.print_score()
         passenger.reset_position()
-        time_sleep -= scoreboard.level / 100
-        if time_sleep < 0:
-            time_sleep = 0
+        carpool.speed_up()
 
 screen.exitonclick()
