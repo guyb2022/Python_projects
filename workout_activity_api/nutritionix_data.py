@@ -46,7 +46,5 @@ class Nutritionix:
 
     def post_request(self):
         """Request POST new entry"""
-        response = requests.post(url=self.url_web, json=self.params, headers=self.header, auth=basic)
-        data = response.json()
-        return data
-        # return requests.post(url=self.url_web, json=self.params, headers=self.header).json()
+        return requests.post(url=self.url_web, json=self.params, headers=self.header, auth=basic).json()
+        
