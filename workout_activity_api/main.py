@@ -6,6 +6,7 @@ from datetime import datetime
 input_sentence = input("Please Enter your workout activity: ")
 
 nutri = Nutritionix()
+# Enter personal params: Activity/ gender/ weight/ height/ age
 nutri.set_data(input_sentence, 'Male', 71, 175, 30)
 nutri_result = nutri.post_request()
 
