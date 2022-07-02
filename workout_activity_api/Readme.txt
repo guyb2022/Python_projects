@@ -13,9 +13,9 @@ With this app we can update on each workout we did and all is updated in Google 
 
 In order to use the environment veriables create a .env file under the root directory
 for example:
-NUT_PASS=your_password
-NUT_USER=your_user_name
-NUT_API_KEY=your_api_key
-NUT_API_ID=your_api_id
+NUT_PASS=<your_password>
+NUT_USER=<your_user_name>
+NUT_API_KEY=<your_api_key>
+NUT_API_ID=<your_api_id>
 
 
