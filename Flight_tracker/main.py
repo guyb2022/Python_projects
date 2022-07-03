@@ -2,12 +2,12 @@ from sms_handler import Sender
 from sheety_file import Sheety
 from flights_treck import FlightTrack
 import warnings
-from datetime import datetime
+from datetime import datetime, timedelta
 
 warnings.filterwarnings("ignore")
 
 today = datetime.today().strftime('%d/%m/%Y')
-half_month = '01/12/2022'
+half_month = (datetime.today() + timedelta(days=180)).strftime('%d/%m/%Y')
 sheety_data = Sheety()
 # Init the Sheety
 df_data = sheety_data.get_request()
@@ -38,15 +38,6 @@ def find_minimum_price():
 
 if __name__ == '__main__':
     find_minimum_price()
-
-
-"""
-We would like to track several location to fly
-For each location we will search for a cheap flight with:
-Once a cheaper flight was found we will update the google sheet with:
-And than an SMS will be sent to the user
-"""
-
 
 
 
