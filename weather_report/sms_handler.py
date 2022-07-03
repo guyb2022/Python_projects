@@ -1,14 +1,17 @@
 from twilio.rest import Client
-from twilio.http.http_client import TwilioHttpClient
 from dotenv import load_dotenv
 import os
+# This import is for pythonanywhere usage 
+# from twilio.http.http_client import TwilioHttpClient
 
 # Loading the environment variables
 load_dotenv(".env")
 
 
 class Sender:
+    """SMS Class"""
     def __init__(self):
+        """Init class variables"""
         self.auth_token = os.getenv('AUTH_TOKEN')
         self.account_sid = os.getenv('ACCOUNT_SID')
         self.from_number = os.getenv('SMS_FROM')
