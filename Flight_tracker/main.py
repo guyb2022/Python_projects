@@ -1,6 +1,6 @@
 from sms_handler import Sender
 from sheety_file import Sheety
-from flights_treck import FlightTrack
+from flights_track import FlightTrack
 import warnings
 from datetime import datetime, timedelta
 
